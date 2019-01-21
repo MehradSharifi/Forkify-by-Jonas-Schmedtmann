@@ -1,6 +1,6 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
-import {elements} from './views/base';
+import {elements, renderLoader, clearLoader} from './views/base';
 
 // https://www.food2fork.com/api/search
 //5e595fc73b6662893bfa673b6ed7b381
@@ -13,10 +13,11 @@ import {elements} from './views/base';
 */
 const state = {};
 
+// CONTROL SEARCH
 const controlSearch = async () => {
     // 1) Get query from view
     const query = searchView.getInput();
-
+ 
     if (query) {
         // 2) New search object and add to state
         state.search = new Search(query);
@@ -24,15 +25,18 @@ const controlSearch = async () => {
         // 3) Prepare UI for results 
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader( elements.searchRes);
         
         // 4) Search for recipes
         await state.search.getResults(); 
 
         // 5) Render results on UI
+        clearLoader();
         searchView.renderResults(state.search.result);
 
     }
 }
+
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
