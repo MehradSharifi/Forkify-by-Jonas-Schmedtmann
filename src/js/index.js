@@ -83,7 +83,7 @@ const controlRecipe = async () => {
 
         // Create new recipe object
         state.recipe = new Recipe(id);
- 
+
         try {
             // Get recipe data and parse ingredients
             await state.recipe.getRecipe();
@@ -113,3 +113,20 @@ const controlRecipe = async () => {
 // better way rais events for common object
 let events = ['hashchange', 'load'];
 events.forEach((event) => window.addEventListener(event, controlRecipe));
+
+elements.recipe.addEventListener('click', e => {
+    if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+        // Decrease button is clicked
+        if (state.recipe.servings > 1) {
+            state.recipe.updateServings('dec');
+            recipeView.updateServingsIngredients(state.recipe);
+        }
+
+    } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+        // Decrase button is clicked
+        state.recipe.updateServings('inc');
+        recipeView.updateServingsIngredients(state.recipe); 
+    }
+
+    console.log(state.recipe); 
+});
