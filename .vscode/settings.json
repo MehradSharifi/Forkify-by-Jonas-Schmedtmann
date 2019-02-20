@@ -1,0 +1,22 @@
+{
+    "workbench.colorTheme": "Oceanic Next (dimmed bg)",
+    "files.autoSave": "onFocusChange",
+    "editor.minimap.enabled": true,
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+    "editor.formatOnSave": false,
+  
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#242424",
+      "statusBar.noFolderBackground": "#333333",
+      "statusBar.debuggingBackground": "#263238",
+      "[Abyss]": {}
+    },
+    "editor.wordWrap": "on",
+
+    "editor.tokenColorCustomizations": {
+        "[Oceanic Next (dimmed bg)]": {
+            "comments": "#979696",
+        }
+    },
+  }
